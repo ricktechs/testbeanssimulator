@@ -1,0 +1,168 @@
+ {% extends "base.html" %} {% block content %}
+<header class="top-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="logo_main">
+                    <a href="index.html">PAWA BEANS THRESHER</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="images/menu_icon.png"></button>
+            </div>
+        </div>
+    </div>
+</header><br><br><br>
+<div class="container register-form">
+    <div class="form">
+        <div class="note">
+            <h2 style="color: black;font-weight: bolder">OPTIMIZATION OF DESIGN PARAMETERS AND PERFORMANCE OF A STATIONARY SOLAR THRESHER FOR COMMON BEAN <em>(PHASEOLUS VULGARIS L)</em></h2>
+        </div>
+        <div style=" min-width: 100%; max-height: 400px;overflow: none;padding-bottom: 25px">
+            <h2 align="center" style="color: olive">Enter Input Characteristics:</h2>
+            <table>
+                <tr>
+                    <th>Linear Concave Length (Lc)</th>
+                    <th>Effective Cylinder Diammeter</th>
+                    <th>Cylinder Concave Clearance</th>
+                    <th>Cylinder Width</th>
+                </tr>
+                <tr>
+                    <td><input name="lc" type="text" class="form-control" placeholder="lc(m)" value="" /></td>
+                    <td><input name="D" type="text" class="form-control" placeholder="D(m)" value="" /></td>
+                    <td><input name="c" type="text" class="form-control" placeholder="c" value="" /></td>
+                    <td><input name="wc" type="text" class="form-control" placeholder="wc" value="" /></td>
+                </tr>
+                <tr>
+                    <th>Center line dist. btn rods</th>
+                    <th>Center line dist. btn bars</th>
+                    <th>Rod Diameter</th>
+                    <th>Width of the bar</th>
+                </tr>
+                <tr>
+                    <td><input name="a1" type="text" class="form-control" placeholder="a1" value="" /></td>
+                    <td><input name="b1" type="text" class="form-control" placeholder="b1" value="" /></td>
+                    <td><input name="a2" type="text" class="form-control" placeholder="a2" value="" /></td>
+                    <td><input name="b2" type="text" class="form-control" placeholder="b2" value="" /></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div align="center">
+    {% if result %}
+    <input id="calculateMassFlowRate" type="submit" class="btnSubmit" style="background:-webkit-radial-gradient(left,green,#00FF00);" value="Clear and Continue" /> {% else %}
+    <input id="calculateMassFlowRate" type="submit" class="btnSubmit" style="background:-webkit-radial-gradient(top,blue,indigo);" value="Optimize Now" /> {% endif %}
+</div>
+<hr>
+</div>
+</div>
+<div style=" min-width: 100%; max-height: 400px;overflow: none;">
+    <h2 align="center" style="color: olive">Model Optimum Output:</h2>
+    <table>
+        <tr>
+            <th>Power to detach the grains (W)</th>
+            <th>Power to Overcome Friction (W)</th>
+            <th>Power to turn Unloaded Cylinder (W)</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.p_i}}</td>
+            <td>{{n.pf}}</td>
+            <td>{{n.pt}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Power Efficiency (%)</th>
+            <th>Threshing Efficiency (%)</th>
+            <th>Grain Demage (%)</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.e}}</td>
+            <td>{{n.te}}</td>
+            <td>{{n.gd}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Separation Efficiency (%)</th>
+            <th>Output Capacity (kg/s)</th>
+            <th>Dwell Time (Seconds)</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.Se}}</td>
+            <td>{{n.ct}}</td>
+            <td>{{n.td}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if result %}
+    <a href="/reports.xlsx" download><i class="fa fa-download"> Download Output</i>
+    </a> {% endif %}
+</div>
+</div>
+</div>
+<div style=" min-width: 100%; max-height: 400px;overflow: none;padding-bottom: 25px">
+    <h2 align="center" style="padding-top: 20px;color:olive ">Maximised Input Characteristics:</h2>
+    <table>
+        <tr>
+            <th>Average Velocity (Vb)</th>
+            <th>Linear Concave Length (Lc)</th>
+            <th>Feed rate</th>
+            <th>Center line distance btn bars</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.vb_opt}}</td>
+            <td>{{n.lc_opt}}</td>
+            <td>{{n.fr_opt}}</td>
+            <td>{{n.b1_opt}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Mass of Cylinder (Mc)</th>
+            <th>Effective Cylinder Diameter (D)</th>
+            <th>Cylinder r.p.m. without load</th>
+            <th>Rod Diameter</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.mc_opt}}</td>
+            <td>{{n.D_opt}}</td>
+            <td>{{n.n_opt}}</td>
+            <td>{{n.a2_opt}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Radius of the driven pulley</th>
+            <th>Dry basis bulk density</th>
+            <th>Cylinder concave clearance</th>
+            <th>Width of the bar</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.y_opt}}</td>
+            <td>{{n.bd_opt}}</td>
+            <td>{{n.c_opt}}</td>
+            <td>{{n.b2_opt}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Cylinder width</th>
+            <th>Moisture content parameter (%)</th>
+            <th>Center line distance btn rods</th>
+            <th>Av. Grain diameter of the Spherical grain</th>
+        </tr>
+        {% for n in result %}
+        <tr>
+            <td>{{n.wc_opt}}</td>
+            <td>{{n.b_opt}}</td>
+            <td>{{n.a1_opt}}</td>
+            <td>{{n.d1_opt}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if result %}
+    <a href="/reports.xlsx" download><i class="fa fa-download"> Download Output</i>
+    </a> {% endif %} {%endblock%}
