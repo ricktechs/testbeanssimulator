@@ -103,7 +103,7 @@ def main():
             pf = kf*fr*pow(vb, 2)
 
             # Power to turn unloaded cylinder
-            pr = ((44/7)*mc*y*n*(g+(2*pow(vb, 2)/D))/60)
+            pr = ((44/7)*mc*y*n*(g+(2*pow(vb, 2)/D))/60000)
 
             # Total Power
             pt = p_i + pr + pf
