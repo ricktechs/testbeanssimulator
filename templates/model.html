@@ -1,319 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
-   <!-- Basic -->
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- Mobile Metas -->
-      <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <!-- Site Metas -->
-      <title>Simulation Model</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- Site Icons -->
-      <link rel="shortcut icon" href="#" type="image/x-icon" />
-      <link rel="apple-touch-icon" href="#" />
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="css/bootstrap.min.css" />
-      <!-- Pogo Slider CSS -->
-      <link rel="stylesheet" href="css/pogo-slider.min.css" />
-      <!-- Site CSS -->
-      <link rel="stylesheet" href="css/style.css" />
-      <!-- Responsive CSS -->
-      <link rel="stylesheet" href="css/responsive.css" />
-      <!-- Custom CSS -->
-      <link rel="stylesheet" href="css/custom.css" />
-<style type="text/css">
-.row{
-align-content: center;
-}
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  color: black
-}
 
-td, th {
-  text-align: left;
-  padding: 8px;
-}
+<head>
+    <meta charset="utf-8">
+    <title>Simulation model</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="font-awesome.css">
 
-tr:nth-child(even) {
-  background-color: grey
-}
-
-.note
-{
-    text-align: center;
-    height: 100px;
-    width: 100%;
-    color: indigo;
-    font-weight: bolder;
-    line-height: 30px;
-}
-.form-group{
-    padding: 5px
-}
-.form-content
-{
-    padding: 5%;
-    margin-bottom: 2%;
-}
-.form-control{
-    border-radius:1.5rem;
-    height: 30px;
-}
-.btnSubmit
-{
-    border:none;
-    border-radius:1.5rem;
-    padding: 1%;
-    width: 20%;
-    cursor: pointer;
-    color: #fff;
-}
-</style>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style type="text/css">
+        .row {
+            align-content: center;
+        }
+        
+        table {
+            border: solid #000 !important;
+            border-width: 1px 0 0 1px !important;
+        }
+        
+        th {
+            background-color: #dddddd;
+        }
+        
+        td {
+            background-color: #fff;
+        }
+        
+        td,
+        th {
+            border: solid #000 !important;
+            border-width: 0 1px 1px 0 !important;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            /*background-color: #dddddd;*/
+        }
+        
+        .note {
+            text-align: center;
+            height: 100px;
+            width: 100%;
+            color: indigo;
+            font-weight: bolder;
+            line-height: 30px;
+        }
+        
+        .form-group {
+            padding: 5px
+        }
+        
+        .form-content {
+            padding: 5%;
+            margin-bottom: 2%;
+        }
+        
+        .form-control {
+            border-radius: 1.5rem;
+            height: 30px;
+        }
+        
+        .btnSubmit {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1%;
+            width: 20%;
+            cursor: pointer;
+            color: #fff;
+            background: -webkit-radial-gradient(top, red, indigo);
+        }
+        
+        .printButton {
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1%;
+            width: 20%;
+            background: -webkit-radial-gradient(top, green, indigo);
+            color: cyan;
+        }
+        
+        .actionBlock {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        h4 {
+            padding-top: 16px;
+            font-weight: bolder;
+        }
+        
+        p {
+            padding: 0px;
+            font-size: 14px;
+            font-weight: bolder;
+        }
+        
+        footer {
+            padding: 18px;
+            background: -webkit-radial-gradient(top, blue, indigo);
+            color: #fff;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: rgb(218, 233, 232);
+            }
+            form {
+                margin-top: 130px;
+            }
+        }
+        
+        @media only screen and (min-width: 600px) {
+            body {
+                background-color: lightblue;
+            }
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
-<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
-      <!-- LOADER -->
-      <div id="preloader">
-         <div class="loader">
-            <img src="images/loader.gif" alt="#" />
-         </div>
-      </div>
-      <!-- END LOADER -->
-      <div class="wrapper">
-      <nav id="sidebar">
-         <div class="menu_section">
-            <ul>
-               <li><a href="index.html">Home</a></li>
-               <li><a href="about.html">About</a></li>
-               <li><a href="model.html">Modelling</a></li>
-               <li><a href="opt.html">Optimization</a></li>
-            </ul>
-         </div>
-      </nav>
-      <div id="content">
-         <!-- Start header -->
-         <header class="top-header">
-            <div class="container">
-               <div class="row">
-                  <div class="col-sm-6">
-                     <div class="logo_main">
-                        <a href="index.html">PAWA BEANS THRESHER</a>
-                     </div>
-                  </div>
-                  <div class="col-sm-6">
-                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn"><img src="images/menu_icon.png"></button>
-                  </div>
-               </div>
+
+<body>
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <h4>MODELLING AND OPTIMIZATION OF DESIGN PARAMETERS AND PERFORMANCE OF A STATIONARY SOLAR THRESHER FOR COMMON BEAN</h4>
+                <p><em>(PHASEOLUS VULGARIS L)</em></p>
             </div>
-         </header><br><br><br>
-<div class="container register-form ">
- <div style=" min-width: 100%; max-height: 400px;overflow: none;padding-bottom: 25px" >
-    <h3 align="center" style="padding-top: 20px;color: brown">Enter Input Characteristics:</h3>
-    <table >
-      <tr >
-        <th>Average Velocity (Vb)</th>
-        <th>Linear Concave Length (Lc)</th>
-        <th>Feed rate</th>
-        <th>Center line distance btn bars</th>
-      </tr>
-      <tr>
-        <td><input name="vb" type="text" class="form-control" placeholder="vb(m/s)" value=""/></td>
-        <td><input name="lc" type="text" class="form-control" placeholder="Lc (m)" value=""/></td>
-        <td><input name="fr" type="text" class="form-control" placeholder="fr" value=""/></td>
-        <td><input name="b1" type="text" class="form-control" placeholder="b1(m)" value=""/></td>
-      </tr>
-       <tr >
-        <th>Mass of Cylinder (Mc)</th>
-        <th>Effective Cylinder Diameter (D)</th>
-        <th>Cylinder r.p.m. without load</th>
-        <th>Rod Diameter</th>
-      </tr>
-      <tr>
-        <td><input name="mc" type="text" class="form-control" placeholder="mc" value=""/></td>
-        <td><input name="D" type="text" class="form-control" placeholder="D (m)" value=""/></td>
-        <td><input name="n" type="text" class="form-control" placeholder="n" value=""/></td>
-        <td><input name="a2" type="text" class="form-control" placeholder="a2 (m)" value=""/></td>
-      </tr>
-       <tr >
-        <th>Radius of the driven pulley</th>
-        <th>Dry basis bulk density</th>
-        <th>Cylinder concave clearance</th>
-        <th>Width of the bar</th>
-      </tr>
-      <tr>
-        <td><input name="y" type="text" class="form-control" placeholder="y" value=""/></td>
-        <td><input name="bd" type="text" class="form-control" placeholder="bd" value=""/></td>
-        <td><input name="c" type="text" class="form-control" placeholder="c" value=""/></td>
-        <td><input name="b2" type="text" class="form-control" placeholder="b2 (m)" value=""/></td>
-      </tr>
-       <tr >
-        <th>Cylinder width</th>
-        <th>Moisture content parameter (%)</th>
-        <th>Center line distance btn rods</th>
-        <th>Av. Grain diameter of the Spherical grain</th>
-      </tr>
-      <tr>
-        <td><input name="wc" type="text" class="form-control" placeholder="wc(m)" value=""/></td>
-        <td><input name="b" type="text" class="form-control" placeholder="b" value=""/></td>
-        <td><input name="a1" type="text" class="form-control" placeholder="a1(m)" value=""/></td>
-        <td><input name="d1" type="text" class="form-control" placeholder="d1(m)" value=""/></td>
-      </tr>
-    </table>
-</div>
-</div><br><br><br>
-<div align="center">
-      {% if result %}
-      <input id="calculateMassFlowRate" type="submit" class="btnSubmit" style="background:-webkit-radial-gradient(left,green,#00FF00);" value="Clear and Continue" />
-      {% else %}
-      <input id="calculateMassFlowRate" type="submit" class="btnSubmit" style="background:-webkit-radial-gradient(top,blue,indigo);" value="Simulate Now"/>
-      {% endif %}
-    </div>
-    <hr>
-</div>
-</div>
- <div style=" min-width: 100%; max-height: 400px;overflow: none;" >
-    <h2 align="center" style="color: brown ">Simulated Model Output:</h2>
-    <table >
-      <tr >
-        <th>Power to detach the grains (W)</th>
-        <th>Power to Overcome Friction (W)</th>
-        <th>Power to turn Unloaded Cylinder (W)</th>
-      </tr>
-      {% for n in result %}
-      <tr>
-        <td>{{n.p_i}}</td>
-        <td>{{n.pf}}</td>
-        <td>{{n.pt}}</td>
-      </tr>
-      {% endfor %}
-       <tr >
-        <th>Power Efficiency (%)</th>
-        <th>Threshing Efficiency (%)</th>
-        <th>Grain Demage (%)</th>
-      </tr>
-      {% for n in result %}
-      <tr>
-        <td>{{n.e}}</td>
-        <td>{{n.te}}</td>
-        <td>{{n.gd}}</td>
-      </tr>
-      {% endfor %}
-       <tr >
-        <th>Separation Efficiency (%)</th>
-        <th>Output Capacity (kg/s)</th>
-        <th>Dwell Time (Seconds)</th>
-      </tr>
-      {% for n in result %}
-      <tr>
-        <td>{{n.Se}}</td>
-        <td>{{n.ct}}</td>
-        <td>{{n.td}}</td>
-      </tr>
-      {% endfor %}
-    </table>
-</div>
-</div>
-	{% if result %}
-    <a href="/reports.xlsx" download><i class="fa fa-download"> Download Output</i>
-    </a>
-    {% endif %}
-    <!-- <h3>{{result}}</h3> -->
-</div><br>
- <footer class="footer-box">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="full">
-                        <div class="heading_main text_align_center white_fonts margin-bottom_30">
-                           <h2>Contact us</h2>
+            <br />
+
+            <form action="#" method="post" id="throughputRateForm" enctype="multipart/form-data">
+
+                <p class="text-danger text-center">{{errors.message}}</p>
+
+                <div class="row ">
+
+                    <div class="col-sm-3">
+
+                        <div class="form-group">
+                            <p>Avg. Linear Velocity (Vb)</p>
+                            <input name="vb" type="text" class="form-control" placeholder="Vb (m/s)" value="{{form_fields.vb}}" />
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  
-                  <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                     <div class="full footer_blog f_icon_1">
-                         <p>Address<br><small>306 11015,<br>Njoro,<br>Nakuru, Kenya</small></p>
-                     </div>
-                  </div>
+                        <div class="form-group">
+                            <p>Linear Concave Length (Lc) m</p>
+                            <input name="lc" type="text" class="form-control" placeholder="Lc (m)" value="{{form_fields.lc}}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <p>Feed Rate(Fr)
+                                <p>
+                                    <input name="fr" type="text" class="form-control" placeholder="fr (Q)" value="{{form_fields.fr}}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Mass of the Threshing Cylinder (Mc)</p>
+                            <input name="mc" type="text" class="form-control" placeholder="Mc (kg)" value="{{form_fields.mc}}" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p>Effective Cylinder Diammeter (D)</p>
+                            <input name="D" type="text" class="form-control" placeholder="D (m)" value="{{form_fields.D}}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Cylinder RPM without Load</p>
+                            <input name="n" type="text" class="form-control" placeholder="n" value="{{form_fields.n}}" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p>Radius of Driven Pulley(Y)</p>
+                            <input name="y" type="text" class="form-control" placeholder="y (m)" value="{{form_fields.y}}" } />
+                        </div>
+                        <div class="form-group">
+                            <p>Dry basis Bulk Density (&Rho;<sub>d </sub>)</p>
+                            <input type="text" name="bd" class="form-control" placeholder="bd (kg/m`3" value="{{form_fields.bd}}" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p>Cylinder Concave Width (Wc)</p>
+                            <input name="wc" type="text" class="form-control" placeholder="Wc (m)" value="{{form_fields.wc}}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Moisture Content Parameter</p>
+                            <input name="b" type="text" class="form-control" placeholder="b " value="{{form_fields.b}}" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <P>Center Line Distance between rods (a<sub>1</sub>)</P>
+                            <input name="a1" type="text" class="form-control" placeholder="a1 (m)" value="{{form_fields.a1}}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Center Line Distance between bars(b<sub>1</sub>)</p>
+                            <input name="b1" type="text" class="form-control" placeholder="b1 (m)" value="{{form_fields.b1}}" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p>Concave rod Diammeter(a<sub>2</sub>) </p>
+                            <input name="a2" type="text" class="form-control" placeholder="a2 (m)" value="{{form_fields.a2}}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Width of the Concave bar(b<sub>2</sub>)</p>
+                            <input name="b2" type="text" class="form-control" placeholder="b2 (m)" value="{{form_fields.b2}}" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <p>Cylinder Concave Clearance(C)</p>
+                            <input name="c" type="text" class="form-control" placeholder="c" value="{{form_fields.c}}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Spherical Grain Diameter</p>
+                            <input name="d1" type="text" class="form-control" placeholder="d1 (m)" value="{{form_fields.d1}}" />
+                        </div>
 
-                  <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                     <div class="full footer_blog f_icon_2">
-                        <p>Phone<br><small>+2541234567<br>+254123456<br>Monday - Friday<br>08:00 am - 05:00 pm</small></p>
-                     </div>
-                  </div>
+                    </div>
+                </div>
+                <div align="center">
 
-                  <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                     <div class="full footer_blog f_icon_3">
-                         <p>Email<br><small>support@pawathreshers.com<br>24 X 7 online support</small></p>
-                     </div>
-                  </div>
+                    <input id="calculateMassFlowRate" type="submit" class="btnSubmit" style="background:-webkit-radial-gradient(top,blue,indigo);" value="Simulate Now" />
+                </div>
+                <hr>
+            </form>
 
-                  <div class="col-lg-3 col-md-6 col-sm-6 white_fonts">
-                     <div class="full footer_blog_last">
-                         <p>Social media</p>
-                         <p>
-                           <ul>
-                              <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                           </ul>
-                         </p>
-                     </div>
-                  </div>
-              
-               </div>
+            {%if result%}
+            <div class="actionBlock">
+                <form method="get" style="padding: 0;flex:1">
+                    <input name="clean" type="hidden" value="{{random_id.current}}" />
+                    <button type="submit" class="btnSubmit">Clear Output History</button>
+                </form>
+
+                <button id="print" class="printButton">Print Results</button>
             </div>
-         </footer>
-         <!-- End Footer -->
-         <div class="footer_bottom">
-            <div class="container">
-               <div class="row">
-                  <div class="col-12">
-                     <p class="crp">© Copyrights 2020 P. Wamalwa</a></p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
-      <!-- ALL JS FILES -->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-      <!-- ALL PLUGINS -->
-      <script src="js/jquery.magnific-popup.min.js"></script>
-      <script src="js/jquery.pogo-slider.min.js"></script>
-      <script src="js/slider-index.js"></script>
-      <script src="js/smoothscroll.js"></script>
-      <script src="js/form-validator.min.js"></script>
-      <script src="js/contact-form-script.js"></script>
-      <script src="js/isotope.min.js"></script>
-      <script src="js/images-loded.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- End Google Map -->
-      <script>
-         $(document).ready(function() {
-           $('#sidebarCollapse').on('click', function() {
-             $('#sidebar, #content').toggleClass('active');
-             $('.collapse.in').toggleClass('in');
-             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-           });
-         });
-      </script>
-      <!-- google map js -->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>
-      <!-- end google map js -->
-   </body>
+            {%endif%}
+
+        </div>
+
+    </div>
+    </div>
+    <div class="container" style="overflow-x: auto;">
+        <h2 align="center" style="padding-top: 20px ">Model Output:</h2>
+
+
+        <table border="1" cellpadding="3" id="printTable">
+            <tr>
+                <th>Simulation parameters</th>
+                <th>Power to detach the grains (W)</th>
+                <th>Power to Overcome Friction (W)</th>
+                <th>Power to turn Unloaded Cylinder (W)</th>
+                <th>Total power (W)</th>
+                <th>Power Efficiency (%)</th>
+                <th>Threshing Efficiency (%)</th>
+                <th>Grain Demage (%)</th>
+                <th>Separation Efficiency (%)</th>
+                <th>Output Capacity (kg/s)</th>
+                <th>Dwell Time (Seconds)</th>
+                <th>Threshing Loss (%)</th>
+
+            </tr>
+            {% for n in result %}
+            <tr>
+                <td>
+                    <p style="font-size:10px;">Vb(m/s):<strong>{{n.vb}}</strong></p>
+                    <p style="font-size:10px;">F<sub>r</sub>(g/s):<strong>{{n.fr}}</strong></p>
+                    <p style="font-size:10px;">D(m):<strong>{{n.D}}</strong></p>
+                    <p style="font-size:10px;">Y(m):<strong>{{n.y}}</strong></p>
+                    <p style="font-size:10px;">L<sub>c</sub>(m):<strong>{{n.lc}}</strong></p>
+                    <p style="font-size:10px;">M<sub>c</sub>(g):<strong>{{n.mc}}</strong></p>
+                    <p style="font-size:10px;">N(RPM):<strong>{{n.n}}</strong></p>
+                    <p style="font-size:10px;">&Rho;<sub>d </sub>(kg/m<sup>3</sup>):<strong>{{n.bd}}</strong></p>
+                    <p style="font-size:10px;">W<sub>c</sub>(m):<strong>{{n.wc}}</strong></p>
+                    <p style="font-size:10px;">a<sub>1</sub>(m):<strong>{{n.a1}}</strong></p>
+                    <p style="font-size:10px;">a<sub>2</sub>(m):<strong>{{n.a2}}</strong></p>
+                    <p style="font-size:10px;">C(m):<strong>{{n.c}}</strong></p>
+                    <p style="font-size:10px;">Moisture Content Parameter:<strong>{{n.b}}</strong></p>
+                    <p style="font-size:10px;">b<sub>1</sub>(m):<strong>{{n.b1}}</strong></p>
+                    <p style="font-size:10px;">b<sub>2</sub>(m):<strong>{{n.b2}}</strong></p>
+                    <p style="font-size:10px;">Spherical Grain Diameter(m):<strong>{{n.d1}}</strong></p>
+
+                </td>
+                <td style="font-size:14px;"><strong>{{n.p_i}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.pf}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.pr}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.pt}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.e}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.te}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.gd}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.Se}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.ct}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.dt}}</strong></td>
+                <td style="font-size:14px;"><strong>{{n.tgl}}</strong></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <footer>
+        <h5 align="center" style="font-weight: bolder;">&copy; 2020 Wamalwa,PhD</h5>
+    </footer>
+
+    <script>
+        function printData() {
+            var divToPrint = document.getElementById("printTable");
+            newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+
+        $('#print').on('click', function() {
+            printData();
+        })
+    </script>
+
+</body>
+
 </html>
-

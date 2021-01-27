@@ -28,12 +28,12 @@ u = 0.375
 ks = 2.53
 #kt = 9.14*pow(10,-4)
 kt = 0.0021
-km = 0.7
+km = 0.69
 ke = 0.91
 kn = 2.25
 kf = 0.06
-kd = 7.94*pow(10, -3)
-Z = 0.65
+kd = 7.94*pow(10,-3)
+Z = 0.7472
 ka = 0.15
 html_output = []
 form_fields = {}
@@ -66,7 +66,7 @@ def main():
             n = float(request.form['n'])
             y = float(request.form['y'])
             c = float(request.form['c'])
-            b = float(request.form['b'])
+            b = float(request.form['b'])/100
 
             # update random id
             random_id.update(
@@ -103,14 +103,14 @@ def main():
             pf = kf*fr*pow(vb, 2)
 
             # Power to turn unloaded cylinder
-            pr = ((44/7)*mc*y*n*(g+(2*pow(vb, 2)/D))/60)
+            pr = ((44/7)*mc*y*n*(g+(2*pow(vb,2)/D))/60000)
 
             # Total Power
             pt = p_i + pr + pf
 
             # Modelling threshing process
             # Threshing frequency
-            l1 = kt*(fr/(pow(D, 3)*bw))
+            l1 = kt*((pow(vb,2)*bd*D)/((1-b)*fr))
 
             #l1 = (pow(vb,2)*bd*D)/((1-b)*fr)
 
@@ -125,8 +125,8 @@ def main():
             # Dwell time in the thresher (tdt)
             tdt = 3*lc/(2*vb)
             #te = 1-math.exp((-l1*td))
-            te = 1-(math.exp(-kt*(3*lc*fr)/(2*vb*pow(D, 3)*bw)))
-
+            ktl = kt*-1
+            te = 1 - math.exp((ktl*bd*D*vb*lc)/((1-b)*fr))
             # Threshing loss
             tl = 1 - te
 
@@ -141,28 +141,26 @@ def main():
 
             # total grain loss
             #tgl = math.exp((-0.5*kt*(bd*(1-b)*vb*wc*D*lc))/(c*fr))
-            tgl = tl2 + gd
+            tgl = tl + gd
 
             # Grain migration parameter
-            l2 = (1/kn)*math.sqrt((g+(2*pow(vb, 2)/D)/math.sqrt((fr/(bw*vb)))))
+            l2 = (1/kn)*math.sqrt((g+(2*pow(vb,2)/D)/math.sqrt((fr*(1-b)/(bd*vb)))))
 
             # probability of grain passage
             #P = (l3*3*b1)/(2*vb)
             P = (a1-a2-d1)*(b1-b2-d1)/(a1*b1)
 
             # number of grains passing through the concave opening in one second
-            l3 = (2*vg/(3*b1)*(a1-a2-d1)*(b1-b2-d1)/(a1*b1))
+            l3 = (2*vb*(a1-a2-d1)*(b1-b2-d1))/(3*a1*pow(b1,2))
 
             # separation efficiency
-            Se = 1-(((l1*l3*(l3-l1)*math.exp((-l2*td)))+(l2*l1*(l1-l2)*math.exp((-l3*td))
-                                                         ) + (l2*l3*(l2-l3)*math.exp((-l1*td))))/((l1-l2)*(l3-l2)*(l3-l1)))
+            Se = 1-(((l1*l3*(l3-l1)*math.exp((-l2*td)))+(l2*l1*(l1-l2)*math.exp((-l3*td)))+ (l2*l3*(l2-l3)*math.exp((-l1*td))))/((l1-l2)*(l3-l2)*(l3-l1)))
 
             # output capacity
-            ct = km * fr * Z * Se
+            ct = km * fr * Z * Se*3600
 
             # Outputs
-            output = {"p_i": p_i, "pf": pf, "pr": pr, "pt": pt, "e": e,
-                      "te": te, "gd": gd, "tgl": tgl, "l3": l3, "Se": Se, "ct": ct, "dt": dt}
+            output = {"pf": pf, "pr": pr, "pt": pt,"te": te,"tl": tl, "gd": gd, "tgl": tgl, "l3": l3,"ct": ct}
             output.update(form_fields)
             html_output.append(output)
 

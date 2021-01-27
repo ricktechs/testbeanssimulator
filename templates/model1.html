@@ -140,7 +140,7 @@
                                 <input name="fr" type="text" class="form-control" placeholder="fr (Q)" value="{{form_fields.fr}}" />
                         </div>
                         <div class="form-group">
-                            <p>Mass of the Threshing Cylinder (m)</p>
+                            <p>Mass of the Threshing Cylinder (grams)</p>
                             <input name="mc" type="text" class="form-control" placeholder="Mc (kg)" value="{{form_fields.mc}}" />
                         </div>
                     </div>
@@ -255,14 +255,14 @@
                 <tr>
                     <th>Separation Efficiency (%)</th>
                     <th>Output Capacity (kg/s)</th>
-                    <th>Dwell Time (Seconds)</th>
                     <th>Threshing Loss (%)</th>
+                    <th>Total Grain Loss (%)</th>
                 </tr>
                 {% for n in result %}
                 <tr>
                     <td>{{n.Se}}</td>
                     <td>{{n.ct}}</td>
-                    <td>{{n.dt}}</td>
+                    <td>{{n.tl}}</td>
                     <td>{{n.tgl}}</td>
                 </tr>
                 {% endfor %}
